@@ -1,9 +1,9 @@
 import React from "react";
 import StepProgress from "./StepProgress";
 import ProgressControl from "./ProgressControl";
-import StepOne from "./Steps/StepOne"
+import RegisterForm from "./Steps/StepAll";
 import Cart from "./Cart";
-
+import style from "../../style/Main.module.css";
 const Register = () => {
   return (
     <section
@@ -11,18 +11,16 @@ const Register = () => {
       data-phase="1"
       data-total-price="0"
     >
-      <h2 className="register-title col col-12">結帳</h2>
+      <h2 className={`${style.title} col col-12`}>結帳</h2>
       <StepProgress />
-      <section className="form-container col col-12">
-        <StepOne />
-      </section>
+      <RegisterForm />
     </section>
   );
 };
 const Main = () => {
   return (
-    <main className="site-main">
-      <div className="main-container">
+    <main className={style.main}>
+      <div className={style.container}>
         <Register />
         <Cart />
         <ProgressControl />

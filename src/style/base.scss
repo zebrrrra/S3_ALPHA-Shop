@@ -1,42 +1,42 @@
 $screen-break-point: 749.5px;
 
 :root {
-  --white: #FFFFFF;
-  --pink: #F67599;
-  --grey-800: #2A2A2A;
+  --white: #ffffff;
+  --pink: #f67599;
+  --grey-800: #2a2a2a;
   --grey-700: #333333;
   --grey-400: #808080;
   --grey-300: #999999;
 
   --site-edge-margin: 15px;
 
-  --main-font-family: 'Noto Sans TC', sans-serif;
+  --main-font-family: "Noto Sans TC", sans-serif;
 }
 
 body {
-  --background-color: #FFFFFF;
-  --footer-background-color: #F6F7F8;
-  --nav-icon: #2A2A2A;
+  --background-color: #ffffff;
+  --footer-background-color: #f6f7f8;
+  --nav-icon: #2a2a2a;
   --social-icon: #808080;
-  --main-text: #2A2A2A;
+  --main-text: #2a2a2a;
   --secondary-text: #808080;
   --active-color: lightblue;
 
-  --undone-progress-border: #F0F0F5;
+  --undone-progress-border: #f0f0f5;
   --done-progress-border: #000000;
-  --progress-current-color: #2A2A2A;
-  --progress-done-color: #FFFFFF;
-  --progress-undone-color: #AFB1BD;
-  --pg-addr-color: #FFFFFF;
-  --pg-addr-bg-color: #2A2A2A;
+  --progress-current-color: #2a2a2a;
+  --progress-done-color: #ffffff;
+  --progress-undone-color: #afb1bd;
+  --pg-addr-color: #ffffff;
+  --pg-addr-bg-color: #2a2a2a;
   --input-label: #808080;
-  --input-border: #4A4A4A;
+  --input-border: #4a4a4a;
   --input-text: #999999;
-  --select-arrow: #2A2A2A;
-  --select-true: #2A2A2A;
+  --select-arrow: #2a2a2a;
+  --select-true: #2a2a2a;
   --select-false: #999999;
   --product-action-text: #000000;
-  --product-action-bg: #F0F0F5;
+  --product-action-bg: #f0f0f5;
   --left-arrow: #000000;
 
   background-color: var(--background-color);
@@ -105,5 +105,42 @@ li {
         @include col-series($index);
       }
     }
+  }
+}
+
+@mixin input-width($prefix, $division) {
+  $form-full-width: 540;
+
+  @for $index from 1 to ($division + 1) {
+    .#{$prefix}-#{$index} {
+      width: 100% * (($index * 65 + ($index - 1) * 30) / $form-full-width);
+    }
+  }
+}
+@media screen and (min-width: $screen-break-point) {
+  @include input-width("input-w-lg", 6);
+}
+
+@media screen and (max-width: $screen-break-point) {
+  $mobile-form-full-width: 346;
+
+  .input-w-sm-s1 {
+    width: 100% * 133 / $mobile-form-full-width;
+  }
+
+  .input-w-sm-s2 {
+    width: 100% * 183 / $mobile-form-full-width;
+  }
+
+  .input-w-sm-s3 {
+    width: 100% * 158 / $mobile-form-full-width;
+  }
+
+  .input-w-sm-full {
+    width: 100%;
+  }
+
+  main.site-main {
+    margin-top: 16px;
   }
 }

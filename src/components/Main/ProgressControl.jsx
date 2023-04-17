@@ -1,6 +1,7 @@
 import React from "react";
 import { ReactComponent as RightArrow } from "../../icons/right-arrow.svg";
 import { ReactComponent as LeftArrow } from "../../icons/left-arrow.svg";
+import style from "../../style/ProgressControl.module.css";
 const NextButton = () => {
   return (
     <button className="next">
@@ -12,19 +13,14 @@ const NextButton = () => {
 
 const PrevButton = () => {
   return (
-    <button className="prev">
+    <button className={style.prev}>
       <LeftArrow className="cursor-point" />
       上一步
     </button>
   );
 };
 const ConfirmButton = () => {
-  return (
-    <button className="next">
-      確認訂單
-      <RightArrow className="cursor-point" />
-    </button>
-  );
+  return <button className="next">確認訂單</button>;
 };
 
 const Section = ({ children, phase }) => {

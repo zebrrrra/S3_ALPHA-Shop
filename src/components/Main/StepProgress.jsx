@@ -1,5 +1,6 @@
 import React from "react";
 import { ReactComponent as IconComplete } from "../../icons/StepProgress.svg";
+import style from "../../style/StepProgress.module.css";
 
 const Progress = ({ phase, step, title }) => {
   return (
@@ -17,7 +18,7 @@ const Progress = ({ phase, step, title }) => {
 };
 const StepProgress = () => {
   return (
-    <section className="progress-container col col-12">
+    <section className={`${style.container} col col-12`}>
       <Progress phase="address" step={1} title="寄送地址" />
       <Progress phase="shipping" step={2} title="運送方式" />
       <Progress phase="credit-card" step={3} title="付款資訊" />

@@ -1,19 +1,20 @@
 import React from "react";
+import style from "../../../style/StepsAll.module.css";
 
 const InputGroup = ({ label, type, placeholder, className }) => {
   return (
-    <div className={`input-group ${className}`}>
-      <div className="input-label">{label}</div>
+    <div className={`${style.inputGroup} ${className}`}>
+      <div className={style.label}>{label}</div>
       <input type={type} placeholder={placeholder} />
     </div>
   );
 };
 const StepThree = () => {
   return (
-    <form class="col col-12" data-phase="credit-card">
-      <h3 class="form-title">付款資訊</h3>
-      <section class="form-body col col-12">
-        <div class="col col-12">
+    <form className="col col-12" data-phase="credit-card">
+      <h3 className="form-title">付款資訊</h3>
+      <section className="form-body col col-12">
+        <div className="form-col col col-12">
           <InputGroup
             label="持卡人姓名"
             type="text"
@@ -21,7 +22,7 @@ const StepThree = () => {
             className="input-w-lg-4 input-w-sm-full"
           />
         </div>
-        <div class="col col-12">
+        <div className="form-col col col-12">
           <InputGroup
             label="卡號"
             type="text"
@@ -29,7 +30,7 @@ const StepThree = () => {
             className="input-w-lg-4 input-w-sm-full"
           />
         </div>
-        <div class="col col-12">
+        <div className="form-col col col-12">
           <InputGroup
             label="有效期限"
             type="text"
