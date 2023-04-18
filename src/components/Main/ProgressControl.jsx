@@ -2,25 +2,29 @@ import React from "react";
 import { ReactComponent as RightArrow } from "../../icons/right-arrow.svg";
 import { ReactComponent as LeftArrow } from "../../icons/left-arrow.svg";
 import style from "../../style/ProgressControl.module.css";
-const NextButton = () => {
+const NextButton = ({ handleClick }) => {
   return (
-    <button className="next">
+    <button className="next" onClick={handleClick}>
       下一步
       <RightArrow className="cursor-point" />
     </button>
   );
 };
 
-const PrevButton = () => {
+const PrevButton = ({ handleClick }) => {
   return (
-    <button className={style.prev}>
+    <button className={style.prev} onClick={handleClick}>
       <LeftArrow className="cursor-point" />
       上一步
     </button>
   );
 };
-const ConfirmButton = () => {
-  return <button className="next">確認訂單</button>;
+const ConfirmButton = ({ handleSubmit }) => {
+  return (
+    <button className="next" onClick={handleSubmit}>
+      確認訂單
+    </button>
+  );
 };
 
 const Section = ({ children, phase }) => {
@@ -31,19 +35,19 @@ const Section = ({ children, phase }) => {
   );
 };
 
-const ProgressControl = () => {
+const ProgressControl = ({ handleClick, handleSubmit }) => {
   return (
     <section className="progress-control-container col col-lg-6 col-sm-12">
       <Section phase="address">
-        <NextButton />
+        <NextButton handleClick={() => handleClick("next")} />
       </Section>
       <Section phase="shipping">
-        <PrevButton />
-        <NextButton />
+        <PrevButton handleClick={() => handleClick("prev")} />
+        <NextButton handleClick={() => handleClick("next")} />
       </Section>
       <Section phase="credit-card">
-        <PrevButton />
-        <ConfirmButton />
+        <PrevButton handleClick={() => handleClick("prev")} />
+        <ConfirmButton handleSubmit={handleSubmit} />
       </Section>
     </section>
   );
