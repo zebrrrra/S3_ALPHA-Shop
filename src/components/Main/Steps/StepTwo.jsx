@@ -1,7 +1,7 @@
 import React from "react";
 import style from "../../../style/StepsAll.module.css";
 
-const RadioGroup = ({ price, id, name, period, handleChange }) => {
+const RadioGroup = ({ price, id, name, period, onChange }) => {
   return (
     <label
       className={`${style.radioGroup} form-col col col-12`}
@@ -11,7 +11,7 @@ const RadioGroup = ({ price, id, name, period, handleChange }) => {
         id={id}
         type="radio"
         name="shipping"
-        onChange={() => handleChange(price)}
+        onChange={() => onChange(price)}
       />
       <div className={style.info}>
         <div className="form-col radio-col col col-12">
@@ -26,7 +26,7 @@ const RadioGroup = ({ price, id, name, period, handleChange }) => {
     </label>
   );
 };
-const StepTwo = ({ handleChange }) => {
+const StepTwo = ({ onChange }) => {
   return (
     <form className="col col-12" data-phase="shipping">
       <h3 className="form-title">運送方式</h3>
@@ -36,14 +36,14 @@ const StepTwo = ({ handleChange }) => {
           id="shipping-standard"
           name="標準運送"
           period="約 3~7 個工作天"
-          handleChange={handleChange}
+          onChange={onChange}
         />
         <RadioGroup
           price={500}
           id="shipping-dhl"
           name="DHL 貨運"
           period="48 小時內送達"
-          handleChange={handleChange}
+          onChange={onChange}
         />
       </section>
     </form>

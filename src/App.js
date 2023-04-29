@@ -2,14 +2,14 @@ import { useState } from "react";
 import Main from "./components/Main/Main";
 import "./style/base.scss";
 import "./style/reset.scss";
-import "./style/formControl.scss";
+import "./style/stepControl.scss";
 function App() {
   const [currentStep, setCurrentStep] = useState(1);
   const [shipPrice, setShipPrice] = useState(0);
-  const handleChange = (price) => {
+  const handleShipPriceChange = (price) => {
     setShipPrice(price);
   };
-  const handleClick = (e) => {
+  const handleStepClick = (e) => {
     const isNext = e === "next";
     const isPrev = e === "prev";
     if (isNext && currentStep < 3) {
@@ -22,10 +22,10 @@ function App() {
   return (
     <Main
       currentStep={currentStep}
-      handleClick={handleClick}
-      handleSubmit={handleSubmit}
+      onStepClick={handleStepClick}
+      onSubmit={handleSubmit}
       shipPrice={shipPrice}
-      handleChange={handleChange}
+      onChange={handleShipPriceChange}
     ></Main>
   );
 }
