@@ -1,9 +1,8 @@
 # AC 學期三作業 AlphaShop
 
-## 元件拆分
+## 元件渲染
 
-學習如何切分、重複使用元件。
-目前進度：已完成 main 區塊（含表單及購物車），footer、header 待完成
+目前進度：已完成 main、footer、header 三區塊的切分。
 
 ### 安裝
 
