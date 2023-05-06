@@ -32,11 +32,11 @@ const rightList = {
 
 const FooterSection = ({ list }) => {
   return (
-    <section class={style.section}>
-      <h2 class={style.title}>{list.title}</h2>
-      <div class={style.content}>
+    <section className={style.section}>
+      <h2 className={style.title}>{list.title}</h2>
+      <div className={style.content}>
         {list.list.map(({ name, id }) => (
-          <a class={style.link} href="#" key={id}>
+          <a className={style.link} href="#" key={id}>
             {name}
           </a>
         ))}
