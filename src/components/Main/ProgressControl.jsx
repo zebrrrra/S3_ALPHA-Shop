@@ -1,7 +1,8 @@
 import React from "react";
 import { ReactComponent as RightArrow } from "../../icons/right-arrow.svg";
 import { ReactComponent as LeftArrow } from "../../icons/left-arrow.svg";
-import style from "../../style/ProgressControl.module.css";
+import style from "../../style/ProgressControl.module.scss";
+
 const NextButton = () => {
   return (
     <button className="next">

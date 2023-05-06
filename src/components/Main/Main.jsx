@@ -3,7 +3,7 @@ import StepProgress from "./StepProgress";
 import ProgressControl from "./ProgressControl";
 import RegisterForm from "./Steps/StepAll";
 import Cart from "./Cart";
-import style from "../../style/Main.module.css";
+import style from "../../style/Main.module.scss";
 const Register = () => {
   return (
     <section

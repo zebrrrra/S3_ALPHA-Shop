@@ -1,6 +1,6 @@
 import React from "react";
 import { ReactComponent as IconComplete } from "../../icons/StepProgress.svg";
-import style from "../../style/StepProgress.module.css";
+import style from "../../style/StepProgress.module.scss";
 
 const Progress = ({ phase, step, title }) => {
   return (

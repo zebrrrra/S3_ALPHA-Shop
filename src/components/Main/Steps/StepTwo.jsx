@@ -1,19 +1,19 @@
 import React from "react";
-import style from "../../../style/StepsAll.module.css";
+import style from "../../../style/StepsAll.module.scss";
 
 const RadioGroup = ({ price, id, checked, name, period }) => {
   return (
     <label
-      className={`${style.radioGroup} form-col col col-12`}
+      className={`${style.radioGroup} ${style.col} col col-12`}
       data-price={price}
     >
       <input id={id} type="radio" name="shipping" checked={checked} />
       <div className={style.info}>
-        <div className="form-col radio-col col col-12">
+        <div className={`${style.col} col col-12`}>
           <div className={style.radioText}>{name}</div>
           <div className={style.price}></div>
         </div>
-        <div className={`${style.period} form-col radio-col col col-12`}>
+        <div className={`${style.period} ${style.col} col col-12`}>
           {period}
         </div>
       </div>

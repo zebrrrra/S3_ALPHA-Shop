@@ -1,7 +1,7 @@
 import React from "react";
 import { ReactComponent as Minus } from "../../icons/minus.svg";
 import { ReactComponent as Plus } from "../../icons/plus.svg";
-import style from "../../style/Cart.module.css";
+import style from "../../style/Cart.module.scss";
 const initialProducts = [
   {
     id: "1",
@@ -49,8 +49,8 @@ const Product = ({ products }) => {
 const CartInfo = ({ className, title, price }) => {
   return (
     <section className={`cart-info ${className} col col-12`}>
-      <div className={style.cartText}>{title}</div>
-      <div className="cart-price">{price}</div>
+      <div className={style.text}>{title}</div>
+      <div className={style.price}>{price}</div>
     </section>
   );
 };
