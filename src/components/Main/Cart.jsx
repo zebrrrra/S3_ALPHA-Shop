@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { ReactComponent as Minus } from "../../icons/minus.svg";
 import { ReactComponent as Plus } from "../../icons/plus.svg";
-import style from "../../style/Cart.module.css";
+import style from "../../style/Cart.module.scss";
 const initialProducts = [
   {
     id: "1",
@@ -19,7 +19,7 @@ const initialProducts = [
   },
 ];
 
-const Product = ({ products, handleClick }) => {
+const Product = ({ products, onQuantityClick }) => {
   return (
     <>
       {products.map(({ id, img, price, name, quantity }) => (
@@ -36,12 +36,12 @@ const Product = ({ products, handleClick }) => {
               <div className={style.control}>
                 <Minus
                   className={`${style.action} minus`}
-                  onClick={() => handleClick(id, "minus")}
+                  onClick={() => onQuantityClick(id, "minus")}
                 />
                 <span className={style.count}>{quantity}</span>
                 <Plus
                   className={`${style.action} plus`}
-                  onClick={() => handleClick(id, "plus")}
+                  onClick={() => onQuantityClick(id, "plus")}
                 />
               </div>
             </div>
@@ -55,11 +55,12 @@ const Product = ({ products, handleClick }) => {
 const CartInfo = ({ className, title, price }) => {
   return (
     <section className={`cart-info ${className} col col-12`}>
-      <div className={style.cartText}>{title}</div>
-      <div className="cart-price">{price}</div>
+      <div className={style.text}>{title}</div>
+      <div className={style.price}>{price}</div>
     </section>
   );
 };
+
 const Cart = ({ shipPrice }) => {
   const [products, setProducts] = useState(initialProducts);
   const updateProductQuantity = (product, buttonType) => {
@@ -74,7 +75,7 @@ const Cart = ({ shipPrice }) => {
       quantity: newQuantity,
     };
   };
-  const handleClick = (productId, buttonType) => {
+  const handleQuantityClick = (productId, buttonType) => {
     let newProducts = products.map((product) => {
       if (product.id === productId) {
         return updateProductQuantity(product, buttonType);
@@ -83,18 +84,25 @@ const Cart = ({ shipPrice }) => {
     });
     setProducts(newProducts);
   };
-  const totalPrice =
-    products.reduce((sum, { price, quantity }) => sum + price * quantity, 0) +
-    shipPrice;
+  const getTotalPrice = () => {
+    if (shipPrice === "免費") {
+      shipPrice = 0;
+    }
+    const totalPrice =
+      products.reduce((sum, { price, quantity }) => sum + price * quantity, 0) +
+      shipPrice;
+
+    return totalPrice;
+  };
 
   return (
     <section className={`${style.container} col col-lg-5 col-sm-12`}>
       <h3 className={style.title}>購物籃</h3>
       <section className="product-list col col-12" data-total-price="0">
-        <Product products={products} handleClick={handleClick} />
+        <Product products={products} onQuantityClick={handleQuantityClick} />
       </section>
       <CartInfo className="shipping" title="運費" price={shipPrice} />
-      <CartInfo className="total" title="小計" price={totalPrice} />
+      <CartInfo className="total" title="小計" price={getTotalPrice()} />
     </section>
   );
 };

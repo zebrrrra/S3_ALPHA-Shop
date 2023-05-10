@@ -1,15 +1,17 @@
 import { useState } from "react";
 import Main from "./components/Main/Main";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 import "./style/base.scss";
 import "./style/reset.scss";
-import "./style/formControl.scss";
+import "./style/stepControl.scss";
 function App() {
   const [currentStep, setCurrentStep] = useState(1);
-  const [shipPrice, setShipPrice] = useState(0);
-  const handleChange = (price) => {
+  const [shipPrice, setShipPrice] = useState("免費");
+  const handleShipPriceChange = (price) => {
     setShipPrice(price);
   };
-  const handleClick = (e) => {
+  const handleStepClick = (e) => {
     const isNext = e === "next";
     const isPrev = e === "prev";
     if (isNext && currentStep < 3) {
@@ -20,13 +22,17 @@ function App() {
   };
   const handleSubmit = () => console.log("form is submitted");
   return (
-    <Main
-      currentStep={currentStep}
-      handleClick={handleClick}
-      handleSubmit={handleSubmit}
-      shipPrice={shipPrice}
-      handleChange={handleChange}
-    ></Main>
+    <>
+      <Header />
+      <Main
+        currentStep={currentStep}
+        onStepClick={handleStepClick}
+        onSubmit={handleSubmit}
+        shipPrice={shipPrice}
+        onChange={handleShipPriceChange}
+      />
+      <Footer />
+    </>
   );
 }
 

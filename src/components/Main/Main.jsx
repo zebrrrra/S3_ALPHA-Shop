@@ -3,8 +3,8 @@ import StepProgress from "./StepProgress";
 import ProgressControl from "./ProgressControl";
 import RegisterForm from "./Steps/StepAll";
 import Cart from "./Cart";
-import style from "../../style/Main.module.css";
-const Register = ({ currentStep, handleChange }) => {
+import style from "../../style/Main.module.scss";
+const Register = ({ currentStep, onChange }) => {
   return (
     <section
       className="register-container col col-lg-6 col-sm-12"
@@ -13,26 +13,17 @@ const Register = ({ currentStep, handleChange }) => {
     >
       <h2 className={`${style.title} col col-12`}>結帳</h2>
       <StepProgress />
-      <RegisterForm currentStep={currentStep} handleChange={handleChange} />
+      <RegisterForm currentStep={currentStep} onChange={onChange} />
     </section>
   );
 };
-const Main = ({
-  currentStep,
-  handleClick,
-  handleSubmit,
-  shipPrice,
-  handleChange,
-}) => {
+const Main = ({ currentStep, onStepClick, onSubmit, shipPrice, onChange }) => {
   return (
     <main className={style.main}>
       <div className={style.container}>
-        <Register currentStep={currentStep} handleChange={handleChange} />
+        <Register currentStep={currentStep} onChange={onChange} />
         <Cart shipPrice={shipPrice} />
-        <ProgressControl
-          handleClick={handleClick}
-          handleSubmit={handleSubmit}
-        />
+        <ProgressControl onStepClick={onStepClick} onSubmit={onSubmit} />
       </div>
     </main>
   );

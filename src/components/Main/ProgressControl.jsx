@@ -1,27 +1,30 @@
 import React from "react";
 import { ReactComponent as RightArrow } from "../../icons/right-arrow.svg";
 import { ReactComponent as LeftArrow } from "../../icons/left-arrow.svg";
-import style from "../../style/ProgressControl.module.css";
-const NextButton = ({ handleClick }) => {
+import style from "../../style/ProgressControl.module.scss";
+const NextButton = ({ onStepClick }) => {
   return (
-    <button className="next" onClick={handleClick}>
+    <button className="next cursor-point" onClick={() => onStepClick("next")}>
       下一步
-      <RightArrow className="cursor-point" />
+      <RightArrow />
     </button>
   );
 };
 
-const PrevButton = ({ handleClick }) => {
+const PrevButton = ({ onStepClick }) => {
   return (
-    <button className={style.prev} onClick={handleClick}>
-      <LeftArrow className="cursor-point" />
+    <button
+      className={`${style.prev} cursor-point`}
+      onClick={() => onStepClick("prev")}
+    >
+      <LeftArrow />
       上一步
     </button>
   );
 };
-const ConfirmButton = ({ handleSubmit }) => {
+const ConfirmButton = ({ onSubmit }) => {
   return (
-    <button className="next" onClick={handleSubmit}>
+    <button className="next cursor-point" onClick={onSubmit}>
       確認訂單
     </button>
   );
@@ -35,19 +38,19 @@ const Section = ({ children, phase }) => {
   );
 };
 
-const ProgressControl = ({ handleClick, handleSubmit }) => {
+const ProgressControl = ({ onStepClick, onSubmit }) => {
   return (
     <section className="progress-control-container col col-lg-6 col-sm-12">
       <Section phase="address">
-        <NextButton handleClick={() => handleClick("next")} />
+        <NextButton onStepClick={onStepClick} />
       </Section>
       <Section phase="shipping">
-        <PrevButton handleClick={() => handleClick("prev")} />
-        <NextButton handleClick={() => handleClick("next")} />
+        <PrevButton onStepClick={onStepClick} />
+        <NextButton onStepClick={onStepClick} />
       </Section>
       <Section phase="credit-card">
-        <PrevButton handleClick={() => handleClick("prev")} />
-        <ConfirmButton handleSubmit={handleSubmit} />
+        <PrevButton onStepClick={onStepClick} />
+        <ConfirmButton onSubmit={onSubmit} />
       </Section>
     </section>
   );

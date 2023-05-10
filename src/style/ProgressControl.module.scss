@@ -1,0 +1,65 @@
+:global(.progress-control-container) {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+}
+
+:global(.button-group) {
+  padding-top: 24px;
+  border-top: 1px solid #e6e6eb;
+
+  button {
+    display: flex;
+    align-items: center;
+    height: 46px;
+    font-family: Inter, sans-serif;
+    font-size: 14px;
+    border-radius: 8px;
+    border-width: 0px;
+    padding: 0px;
+
+    & > svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    &.prev {
+      background-color: transparent;
+      line-height: 20px;
+      font-weight: 400;
+      color: #000000;
+
+      > svg {
+        margin-right: 12px;
+      }
+    }
+    &:global(.next) {
+      justify-content: center;
+      width: 174px;
+      font-weight: 500;
+      line-height: 17px;
+      background: var(--pink);
+      color: #ffffff;
+      margin-left: auto;
+
+      > svg {
+        margin-left: 12px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 749.5px) {
+  :global(.progress-control-container) {
+    position: relative;
+    margin-top: 24px;
+    margin-bottom: 40px;
+  }
+  :global(.button-group .next) {
+    width: 156px;
+  }
+  :global(.button-group[data-phase="address"] .next) {
+    width: 100%;
+  }
+}
