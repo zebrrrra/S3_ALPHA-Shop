@@ -7,7 +7,7 @@ import "./style/reset.scss";
 import "./style/stepControl.scss";
 function App() {
   const [currentStep, setCurrentStep] = useState(1);
-  const [shipPrice, setShipPrice] = useState("免費");
+  const [shipPrice, setShipPrice] = useState(0);
   const handleShipPriceChange = (price) => {
     setShipPrice(price);
   };

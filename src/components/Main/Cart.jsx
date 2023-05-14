@@ -84,16 +84,10 @@ const Cart = ({ shipPrice }) => {
     });
     setProducts(newProducts);
   };
-  const getTotalPrice = () => {
-    if (shipPrice === "免費") {
-      shipPrice = 0;
-    }
-    const totalPrice =
-      products.reduce((sum, { price, quantity }) => sum + price * quantity, 0) +
-      shipPrice;
 
-    return totalPrice;
-  };
+  const totalPrice =
+    products.reduce((sum, { price, quantity }) => sum + price * quantity, 0) +
+    shipPrice;
 
   return (
     <section className={`${style.container} col col-lg-5 col-sm-12`}>
@@ -101,8 +95,12 @@ const Cart = ({ shipPrice }) => {
       <section className="product-list col col-12" data-total-price="0">
         <Product products={products} onQuantityClick={handleQuantityClick} />
       </section>
-      <CartInfo className="shipping" title="運費" price={shipPrice} />
-      <CartInfo className="total" title="小計" price={getTotalPrice()} />
+      <CartInfo
+        className="shipping"
+        title="運費"
+        price={shipPrice === 0 ? "免費" : shipPrice}
+      />
+      <CartInfo className="total" title="小計" price={totalPrice} />
     </section>
   );
 };

@@ -32,7 +32,7 @@ const StepTwo = ({ onChange }) => {
       <h3 className="form-title">運送方式</h3>
       <section className="form-body col col-12">
         <RadioGroup
-          price="免費"
+          price={0}
           id="shipping-standard"
           name="標準運送"
           period="約 3~7 個工作天"
