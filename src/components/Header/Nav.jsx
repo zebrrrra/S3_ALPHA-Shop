@@ -29,7 +29,7 @@ const MenuList = () => {
     </ul>
   );
 };
-const IconList = () => {
+const IconList = ({ onThemeToggle }) => {
   return (
     <ul className={`${style.list} ${style.iconList}`}>
       <li className={style.item}>
@@ -38,18 +38,18 @@ const IconList = () => {
       <li className={style.item}>
         <Cart className={`${style.icon} cursor-point`} />
       </li>
-      <li id="theme-toggle" className={style.item}>
+      <li id="theme-toggle" className={style.item} onClick={onThemeToggle}>
         <Moon className={`${style.icon} cursor-point`} />
         <Sun className={`${style.icon} cursor-point`} />
       </li>
     </ul>
   );
 };
-const Nav = () => {
+const Nav = ({ onThemeToggle }) => {
   return (
     <nav className="navbar-menu">
       <MenuList />
-      <IconList />
+      <IconList onThemeToggle={onThemeToggle} />
     </nav>
   );
 };

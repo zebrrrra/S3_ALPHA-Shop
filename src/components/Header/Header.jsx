@@ -22,12 +22,12 @@ const Logo = () => {
   );
 };
 
-const Header = () => {
+const Header = ({ onThemeToggle }) => {
   return (
     <header className={style.header}>
       <div className={`${style.headerContainer} mx-auto`}>
         <ToggleButton />
-        <Nav />
+        <Nav onThemeToggle={onThemeToggle} />
         <Logo />
       </div>
     </header>
