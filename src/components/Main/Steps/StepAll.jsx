@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import StepThree from "./StepThree";
-const RegisterForm = ({ currentStep, onChange }) => {
+import { FormContext } from "../../../context/FormContext";
+const RegisterForm = () => {
+  const { currentStep } = useContext(FormContext);
   return (
     <section className="form-container col col-12">
       {currentStep === 1 && <StepOne />}
-      {currentStep === 2 && <StepTwo onChange={onChange} />}
+      {currentStep === 2 && <StepTwo />}
       {currentStep === 3 && <StepThree />}
     </section>
   );

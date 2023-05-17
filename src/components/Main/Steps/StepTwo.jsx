@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import style from "../../../style/StepsAll.module.scss";
+import { FormContext } from "../../../context/FormContext";
 
-const RadioGroup = ({ price, id, name, period, onChange }) => {
+const RadioGroup = ({ price, id, name, period }) => {
+  const { handleShipPriceChange } = useContext(FormContext);
+
   return (
     <label
       className={`${style.radioGroup} ${style.col} col col-12`}
@@ -11,7 +14,7 @@ const RadioGroup = ({ price, id, name, period, onChange }) => {
         id={id}
         type="radio"
         name="shipping"
-        onChange={() => onChange(price)}
+        onChange={() => handleShipPriceChange(price)}
       />
       <div className={style.info}>
         <div className={`${style.col} col col-12`}>
@@ -26,7 +29,7 @@ const RadioGroup = ({ price, id, name, period, onChange }) => {
     </label>
   );
 };
-const StepTwo = ({ onChange }) => {
+const StepTwo = () => {
   return (
     <form className="col col-12" data-phase="shipping">
       <h3 className="form-title">運送方式</h3>
@@ -36,14 +39,12 @@ const StepTwo = ({ onChange }) => {
           id="shipping-standard"
           name="標準運送"
           period="約 3~7 個工作天"
-          onChange={onChange}
         />
         <RadioGroup
           price={500}
           id="shipping-dhl"
           name="DHL 貨運"
           period="48 小時內送達"
-          onChange={onChange}
         />
       </section>
     </form>

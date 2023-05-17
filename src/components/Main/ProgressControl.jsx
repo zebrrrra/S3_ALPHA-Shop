@@ -1,30 +1,39 @@
-import React from "react";
+import React, { useContext } from "react";
 import { ReactComponent as RightArrow } from "../../icons/right-arrow.svg";
 import { ReactComponent as LeftArrow } from "../../icons/left-arrow.svg";
 import style from "../../style/ProgressControl.module.scss";
-const NextButton = ({ onStepClick }) => {
+import { FormContext } from "../../context/FormContext";
+const NextButton = () => {
+  const { handleStepClick } = useContext(FormContext);
+
   return (
-    <button className="next cursor-point" onClick={() => onStepClick("next")}>
+    <button
+      className="next cursor-point"
+      onClick={() => handleStepClick("next")}
+    >
       下一步
       <RightArrow />
     </button>
   );
 };
 
-const PrevButton = ({ onStepClick }) => {
+const PrevButton = () => {
+  const { handleStepClick } = useContext(FormContext);
   return (
     <button
       className={`${style.prev} cursor-point`}
-      onClick={() => onStepClick("prev")}
+      onClick={() => handleStepClick("prev")}
     >
       <LeftArrow />
       上一步
     </button>
   );
 };
-const ConfirmButton = ({ onSubmit }) => {
+const ConfirmButton = () => {
+  const { handleClick } = useContext(FormContext);
+
   return (
-    <button className="next cursor-point" onClick={onSubmit}>
+    <button className="next cursor-point" onClick={handleClick}>
       確認訂單
     </button>
   );
@@ -38,19 +47,19 @@ const Section = ({ children, phase }) => {
   );
 };
 
-const ProgressControl = ({ onStepClick, onSubmit }) => {
+const ProgressControl = () => {
   return (
     <section className="progress-control-container col col-lg-6 col-sm-12">
       <Section phase="address">
-        <NextButton onStepClick={onStepClick} />
+        <NextButton />
       </Section>
       <Section phase="shipping">
-        <PrevButton onStepClick={onStepClick} />
-        <NextButton onStepClick={onStepClick} />
+        <PrevButton />
+        <NextButton />
       </Section>
       <Section phase="credit-card">
-        <PrevButton onStepClick={onStepClick} />
-        <ConfirmButton onSubmit={onSubmit} />
+        <PrevButton />
+        <ConfirmButton />
       </Section>
     </section>
   );
