@@ -1,4 +1,4 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useContext } from "react";
 import StepProgress from "./StepProgress";
 import ProgressControl from "./ProgressControl";
 import RegisterForm from "./Steps/StepAll";
@@ -25,6 +25,8 @@ const Main = () => {
   const [products, setProducts] = useState(initialProducts);
   const [shipPrice, setShipPrice] = useState(0);
   const [currentStep, setCurrentStep] = useState(1);
+  const [creditCard, setCreditCard] = useState(creditCardInfo);
+
   const handleStepClick = (e) => {
     const isNext = e === "next";
     const isPrev = e === "prev";
@@ -66,6 +68,21 @@ const Main = () => {
     products.reduce((sum, { price, quantity }) => sum + price * quantity, 0) +
     shipPrice;
 
+  const handleInputChange = (e) => {
+    setCreditCard({ ...creditCard, [e.target.name]: e.target.value });
+  };
+
+  const handleConfirmClick = () => {
+    const ticketInfo = { 總價: totalPrice, 信用卡資訊: creditCard };
+    console.log(ticketInfo);
+    setCreditCard({
+      ...creditCard,
+      cardNumber: "",
+      cvc: "",
+      date: "",
+      name: "",
+    });
+  };
   // 收集與購物車相關資料放入Provider裡
   const cartContextValue = {
     products,
@@ -74,28 +91,14 @@ const Main = () => {
     shipPrice,
     totalPrice,
   };
-
-  const nameRef = useRef(null);
-  const cardRef = useRef(null);
-  const dateRef = useRef(null);
-  const cvcRef = useRef(null);
-  const refCollection = { nameRef, cardRef, dateRef, cvcRef };
-  const handleClick = (e) => {
-    e.preventDefault();
-    creditCardInfo.name = nameRef.current.value;
-    creditCardInfo.cardNumber = cardRef.current.value;
-    creditCardInfo.date = dateRef.current.value;
-    creditCardInfo.cvc = cvcRef.current.value;
-    console.log(creditCardInfo);
-    console.log(`總價是${totalPrice}`);
-  };
-
+  // 與表單相關資料
   const formContextValue = {
     currentStep,
     handleStepClick,
     handleShipPriceChange,
-    handleClick,
-    refCollection,
+    creditCard,
+    handleInputChange,
+    handleConfirmClick,
   };
   return (
     <main className={style.main}>

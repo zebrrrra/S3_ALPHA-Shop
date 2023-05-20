@@ -1,8 +1,8 @@
 # AC 學期三作業 AlphaShop
 
-## 元件實作
+## 表單實作
 
-目前進度:Main、Header、Footer 已完成，dark-mode 待完成。
+目前進度:Main、Header、Footer 已完成，dark-mode 已完成。
 
 ### 安裝
 

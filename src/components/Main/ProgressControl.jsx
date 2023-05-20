@@ -19,6 +19,7 @@ const NextButton = () => {
 
 const PrevButton = () => {
   const { handleStepClick } = useContext(FormContext);
+
   return (
     <button
       className={`${style.prev} cursor-point`}
@@ -30,10 +31,10 @@ const PrevButton = () => {
   );
 };
 const ConfirmButton = () => {
-  const { handleClick } = useContext(FormContext);
+  const { handleConfirmClick } = useContext(FormContext);
 
   return (
-    <button className="next cursor-point" onClick={handleClick}>
+    <button className="next cursor-point" onClick={handleConfirmClick}>
       確認訂單
     </button>
   );
