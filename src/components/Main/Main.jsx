@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import StepProgress from "./StepProgress";
 import ProgressControl from "./ProgressControl";
 import RegisterForm from "./Steps/StepAll";
@@ -6,9 +6,10 @@ import Cart from "./Cart";
 import style from "../../style/Main.module.scss";
 import { initialProducts } from "../../context/CartContext";
 import { CartContext } from "../../context/CartContext";
-import { FormContext, creditCardInfo } from "../../context/FormContext";
+import { FormProvider, useFormContext } from "../../context/FormContext";
+
 const Register = () => {
-  const { currentStep } = useContext(FormContext);
+  const { currentStep } = useFormContext();
   return (
     <section
       className="register-container col col-lg-6 col-sm-12"
@@ -21,21 +22,10 @@ const Register = () => {
     </section>
   );
 };
+
 const Main = () => {
   const [products, setProducts] = useState(initialProducts);
   const [shipPrice, setShipPrice] = useState(0);
-  const [currentStep, setCurrentStep] = useState(1);
-  const [creditCard, setCreditCard] = useState(creditCardInfo);
-
-  const handleStepClick = (e) => {
-    const isNext = e === "next";
-    const isPrev = e === "prev";
-    if (isNext && currentStep < 3) {
-      setCurrentStep(currentStep + 1);
-    } else if (isPrev && currentStep > 1) {
-      setCurrentStep(currentStep - 1);
-    }
-  };
 
   const handleShipPriceChange = (price) => {
     setShipPrice(price);
@@ -68,21 +58,6 @@ const Main = () => {
     products.reduce((sum, { price, quantity }) => sum + price * quantity, 0) +
     shipPrice;
 
-  const handleInputChange = (e) => {
-    setCreditCard({ ...creditCard, [e.target.name]: e.target.value });
-  };
-
-  const handleConfirmClick = () => {
-    const ticketInfo = { 總價: totalPrice, 信用卡資訊: creditCard };
-    console.log(ticketInfo);
-    setCreditCard({
-      ...creditCard,
-      cardNumber: "",
-      cvc: "",
-      date: "",
-      name: "",
-    });
-  };
   // 收集與購物車相關資料放入Provider裡
   const cartContextValue = {
     products,
@@ -91,25 +66,20 @@ const Main = () => {
     shipPrice,
     totalPrice,
   };
-  // 與表單相關資料
-  const formContextValue = {
-    currentStep,
-    handleStepClick,
-    handleShipPriceChange,
-    creditCard,
-    handleInputChange,
-    handleConfirmClick,
-  };
+
   return (
     <main className={style.main}>
       <div className={style.container}>
-        <FormContext.Provider value={formContextValue}>
+        <FormProvider
+          totalPrice={totalPrice}
+          handleShipPriceChange={handleShipPriceChange}
+        >
           <Register />
           <CartContext.Provider value={cartContextValue}>
             <Cart />
           </CartContext.Provider>
           <ProgressControl />
-        </FormContext.Provider>
+        </FormProvider>
       </div>
     </main>
   );

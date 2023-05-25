@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import style from "../../../style/StepsAll.module.scss";
-import { FormContext } from "../../../context/FormContext";
+import { useFormContext } from "../../../context/FormContext";
 const InputGroup = ({ name, value, label, type, placeholder, className }) => {
-  const { handleInputChange } = useContext(FormContext);
+  const { handleInputChange } = useFormContext();
   return (
     <div className={`${style.inputGroup} ${className}`}>
       <div className={style.label}>{label}</div>
@@ -18,7 +18,7 @@ const InputGroup = ({ name, value, label, type, placeholder, className }) => {
 };
 
 const StepThree = () => {
-  const { creditCard } = useContext(FormContext);
+  const { creditCard } = useFormContext();
   return (
     <form className="col col-12" data-phase="credit-card">
       <h3 className="form-title">付款資訊</h3>

@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { ReactComponent as RightArrow } from "../../icons/right-arrow.svg";
 import { ReactComponent as LeftArrow } from "../../icons/left-arrow.svg";
 import style from "../../style/ProgressControl.module.scss";
-import { FormContext } from "../../context/FormContext";
+import { useFormContext } from "../../context/FormContext";
 const NextButton = () => {
-  const { handleStepClick } = useContext(FormContext);
+  const { handleStepClick } = useFormContext();
 
   return (
     <button
@@ -18,7 +18,7 @@ const NextButton = () => {
 };
 
 const PrevButton = () => {
-  const { handleStepClick } = useContext(FormContext);
+  const { handleStepClick } = useFormContext();
 
   return (
     <button
@@ -31,7 +31,7 @@ const PrevButton = () => {
   );
 };
 const ConfirmButton = () => {
-  const { handleConfirmClick } = useContext(FormContext);
+  const { handleConfirmClick } = useFormContext();
 
   return (
     <button className="next cursor-point" onClick={handleConfirmClick}>

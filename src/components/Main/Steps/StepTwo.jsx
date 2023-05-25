@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import style from "../../../style/StepsAll.module.scss";
-import { FormContext } from "../../../context/FormContext";
+import { useFormContext } from "../../../context/FormContext";
 
 const RadioGroup = ({ price, id, name, period }) => {
-  const { handleShipPriceChange } = useContext(FormContext);
+  const { handleShipPriceChange } = useFormContext();
 
   return (
     <label

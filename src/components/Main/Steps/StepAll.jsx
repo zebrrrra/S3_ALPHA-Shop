@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import StepThree from "./StepThree";
-import { FormContext } from "../../../context/FormContext";
+import { useFormContext } from "../../../context/FormContext";
 const RegisterForm = () => {
-  const { currentStep } = useContext(FormContext);
+  const { currentStep } = useFormContext();
   return (
     <section className="form-container col col-12">
       {currentStep === 1 && <StepOne />}
